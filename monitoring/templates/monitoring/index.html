@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#081321" />
+  <title>BrandShield — Digital Risk Protection</title>
+  <meta name="description" content="An explainable digital risk protection dashboard for detecting suspicious social profiles and mobile apps impersonating your brand." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'monitoring/styles.css' %}" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="BrandShield home">
+        <span class="brand-mark"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 27 6v8c0 7-4.6 12.6-11 16C9.6 26.6 5 21 5 14V6z"/><path class="check" d="m10 15 4 4 8-9"/></svg></span>
+        <span>brand<span class="brand-light">shield</span><small> DIGITAL RISK INTELLIGENCE</small></span>
+      </a>
+      <div class="workspace-label">WORKSPACE</div>
+      <button class="nav-item active" data-view="overview"><span class="nav-icon">◫</span> Overview</button>
+      <button class="nav-item" data-view="social"><span class="nav-icon">◎</span> Social monitoring <span class="nav-count" id="socialNavCount">6</span></button>
+      <button class="nav-item" data-view="apps"><span class="nav-icon">▦</span> App store monitoring <span class="nav-count" id="appNavCount">4</span></button>
+      <button class="nav-item" data-view="brand"><span class="nav-icon">◇</span> Brand profile</button>
+      <div class="sidebar-bottom">
+        <div class="status-card"><span class="pulse"></span><div><strong>Protection active</strong><small>Demo intelligence feed</small></div></div>
+        <div class="user-row"><div class="avatar">BS</div><div><strong>BrandShield team</strong><small>Analyst workspace</small></div><span class="dots">•••</span></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Toggle navigation">☰</button>
+        <div class="breadcrumbs">Workspace <span>/</span> <strong id="crumb">Overview</strong></div>
+        <div class="top-actions"><span class="live-label"><i></i> DEMO ENVIRONMENT</span><button class="icon-btn" id="helpBtn" title="About this demo">?</button><div class="top-avatar">A</div></div>
+      </header>
+
+      <section class="page-view" id="overviewView">
+        <div class="hero">
+          <div><div class="eyebrow"><span class="eyebrow-dot"></span> DIGITAL RISK PROTECTION</div><h1>Your brand. <em>Protected.</em></h1><p>Spot impersonation before it becomes a threat. Monitor social profiles and mobile apps from one clear, explainable workspace.</p>
+            <div class="hero-actions"><button class="btn btn-primary" id="scanBtn"><span>↻</span> Run demo scan</button><button class="btn btn-secondary" data-goto="brand">Configure brand profile <span>↗</span></button></div>
+          </div>
+          <div class="hero-graphic" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="shield-big"><svg viewBox="0 0 120 140"><path d="M60 5 106 22v35c0 33-20 59-46 75C34 116 14 90 14 57V22z"/><path d="m38 65 15 15 31-34"/></svg></div><span class="float-tag tag-one">✓ Brand identity</span><span class="float-tag tag-two">⌁ Threat signals</span><span class="float-tag tag-three">↗ Live insights</span></div>
+        </div>
+
+        <div class="section-heading"><div><h2>Threat overview</h2><p>Snapshot of the monitored demo ecosystem</p></div><span class="updated"><span class="pulse"></span> Updated just now</span></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span>Assets monitored</span><span class="stat-icon blue">◇</span></div><div class="stat-number" id="assetsStat">10</div><div class="stat-foot"><span class="positive">↑ 2</span> across connected sources</div></article>
+          <article class="stat-card"><div class="stat-top"><span>Potential threats</span><span class="stat-icon orange">⚠</span></div><div class="stat-number" id="threatsStat">7</div><div class="stat-foot"><span class="warning-text">Needs review</span> not confirmed fraud</div></article>
+          <article class="stat-card"><div class="stat-top"><span>High-risk signals</span><span class="stat-icon red">⌁</span></div><div class="stat-number" id="highStat">3</div><div class="stat-foot">Strong similarity indicators</div></article>
+          <article class="stat-card"><div class="stat-top"><span>Official assets protected</span><span class="stat-icon green">✓</span></div><div class="stat-number" id="protectedStat">3</div><div class="stat-foot"><span class="positive">Verified</span> excluded from alerts</div></article>
+        </div>
+
+        <div class="content-grid">
+          <section class="panel threat-panel"><div class="panel-heading"><div><h3>Priority detections</h3><p>Items with the strongest impersonation signals</p></div><button class="text-button" data-goto="social">View all detections ↗</button></div><div class="threat-list" id="priorityList"></div></section>
+          <section class="panel coverage-panel"><div class="panel-heading"><div><h3>Monitoring coverage</h3><p>Sources included in this demo</p></div><span class="tiny-badge">2 channels</span></div>
+            <div class="coverage-row"><div class="coverage-icon social-icon">◎</div><div class="coverage-info"><strong>Social media</strong><small>Profiles, names, logos, descriptions</small><div class="progress"><span style="width:72%"></span></div></div><strong class="coverage-value">6</strong></div>
+            <div class="coverage-row"><div class="coverage-icon app-icon">▦</div><div class="coverage-info"><strong>Mobile applications</strong><small>Names, publishers, branding</small><div class="progress orange-progress"><span style="width:48%"></span></div></div><strong class="coverage-value">4</strong></div>
+            <div class="coverage-note"><span>ⓘ</span><p><strong>Explainable by design.</strong> Each alert shows the signals behind its risk score. A flag is a lead for human review—not proof of wrongdoing.</p></div>
+          </section>
+        </div>
+        <section class="panel activity-panel"><div class="panel-heading"><div><h3>Recent activity</h3><p>Latest events in the demo monitoring feed</p></div><button class="text-button" id="exportBtn">Export CSV ↓</button></div><div class="table-wrap"><table><thead><tr><th>ASSET</th><th>CHANNEL</th><th>RISK</th><th>REASON</th><th>STATUS</th></tr></thead><tbody id="activityRows"></tbody></table></div></section>
+        <footer class="footer"><span>BrandShield <b>•</b> Hackathon prototype</span><span>Sample data only · No live platform scraping</span></footer>
+      </section>
+
+      <section class="page-view hidden" id="socialView">
+        <div class="page-title-row"><div><div class="eyebrow">THREAT INTELLIGENCE / SOCIAL</div><h1>Social monitoring</h1><p>Review profiles that may be copying your brand identity.</p></div><button class="btn btn-primary" id="socialScanBtn">↻ Re-scan demo data</button></div>
+        <div class="filter-bar"><div class="search-box"><span>⌕</span><input id="socialSearch" placeholder="Search names, handles or reasons…" /></div><select id="socialRisk"><option value="all">All risk levels</option><option value="High">High risk</option><option value="Medium">Medium risk</option><option value="Low">Low risk</option></select><select id="socialStatus"><option value="all">All statuses</option><option value="Needs review">Needs review</option><option value="Official">Official</option><option value="Reviewed">Reviewed</option></select></div>
+        <div class="panel"><div class="panel-heading"><div><h3>Detected social profiles</h3><p>Similarity signals are heuristic and should be manually verified.</p></div><span class="tiny-badge" id="socialResultCount">6 assets</span></div><div id="socialCards" class="detection-grid"></div></div>
+      </section>
+
+      <section class="page-view hidden" id="appsView">
+        <div class="page-title-row"><div><div class="eyebrow">THREAT INTELLIGENCE / APPS</div><h1>App store monitoring</h1><p>Find apps with look-alike names, logos, or suspicious publisher details.</p></div><button class="btn btn-primary" id="appsScanBtn">↻ Re-scan demo data</button></div>
+        <div class="callout"><span>ⓘ</span><div><strong>Prototype limitation</strong><p>This version uses illustrative app-store records. Production monitoring requires approved store APIs, crawling permissions, or a threat-intelligence provider.</p></div></div>
+        <div class="filter-bar"><div class="search-box"><span>⌕</span><input id="appSearch" placeholder="Search app, publisher or reason…" /></div><select id="appRisk"><option value="all">All risk levels</option><option value="High">High risk</option><option value="Medium">Medium risk</option><option value="Low">Low risk</option></select></div>
+        <div class="panel"><div class="panel-heading"><div><h3>App candidates</h3><p>Potential brand misuse requiring analyst review.</p></div><span class="tiny-badge" id="appResultCount">4 assets</span></div><div id="appCards" class="detection-grid"></div></div>
+      </section>
+
+      <section class="page-view hidden" id="brandView">
+        <div class="page-title-row"><div><div class="eyebrow">SETTINGS / VERIFIED IDENTITY</div><h1>Brand profile</h1><p>Tell BrandShield which assets are legitimate so they can be excluded from alerts.</p></div><span class="verified-pill">✓ Identity profile</span></div>
+        <div class="brand-layout"><form class="panel brand-form" id="brandForm"><div class="panel-heading"><div><h3>Brand identity</h3><p>Use official information your team can verify.</p></div></div>
+          <label>Company / brand name<input id="brandName" required value="Northstar Pay" maxlength="80" /></label>
+          <label>Official website<input id="brandWebsite" type="url" value="https://northstarpay.example" placeholder="https://yourbrand.com" required /></label>
+          <label>Known name variations <small>Separate each with a comma</small><input id="brandAliases" value="NorthstarPay, North Star Pay" placeholder="BrandName, Brand Name" /></label>
+          <label>Official social handles <small>Separate each with a comma</small><input id="brandHandles" value="@northstarpay, @northstar_pay" placeholder="@officialhandle" /></label>
+          <label>Official app publisher<input id="brandPublisher" value="Northstar Financial Technologies" /></label>
+          <label>Brand notes<textarea id="brandNotes" rows="3" placeholder="Official logo, support contact, known domains…">Official customer support never asks for PINs or one-time passwords.</textarea></label>
+          <button class="btn btn-primary" type="submit">Save brand profile <span>✓</span></button><p class="form-feedback" id="brandFeedback" role="status"></p>
+        </form>
+        <div class="profile-side"><div class="panel profile-preview"><div class="preview-label">LIVE PREVIEW</div><div class="brand-avatar" id="previewAvatar">N</div><h2 id="previewName">Northstar Pay</h2><p id="previewWebsite">northstarpay.example</p><div class="verified-line"><span>✓</span> Official brand profile</div><div class="preview-divider"></div><div class="preview-metric"><span>Known handles</span><strong id="previewHandles">2</strong></div><div class="preview-metric"><span>Name variations</span><strong id="previewAliases">2</strong></div><div class="preview-metric"><span>Publisher reference</span><strong id="previewPublisher">Added</strong></div></div>
+          <div class="tip-card"><span class="tip-icon">✦</span><div><strong>Why this matters</strong><p>Clear reference assets reduce false positives and help reviewers distinguish your real accounts from suspicious look-alikes.</p></div></div></div></div>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <div class="modal-backdrop hidden" id="detailModal"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" id="modalClose" aria-label="Close">×</button><div class="eyebrow">DETECTION EXPLAINER</div><h2 id="modalTitle">Detection details</h2><div id="modalBody"></div><div class="modal-actions"><button class="btn btn-secondary" id="markReviewed">Mark reviewed</button><button class="btn btn-primary" id="modalDone">Close details</button></div></div></div>
+  <script src="{% static 'monitoring/app.js' %}"></script>
+</body>
+</html>
